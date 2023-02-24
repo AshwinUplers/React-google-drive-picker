@@ -19,6 +19,7 @@ export type CallbackDoc = {
 };
 export type PickerCallback = {
     action: string;
+    content?: string;
     docs: CallbackDoc[];
 };
 export type authResult = {

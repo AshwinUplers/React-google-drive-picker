@@ -70,7 +70,6 @@ function useDrivePicker() {
         setConfig(config);
         console.log("Init Google Drive Picker");
         console.log(config);
-        config.callbackFunction({ action: "test", docs: [] });
         // if we didnt get token generate token.
         if (!config.token) {
             var client = google.accounts.oauth2.initTokenClient({
@@ -79,6 +78,7 @@ function useDrivePicker() {
                     ? __spreadArray(__spreadArray([], defaultScopes, true), config.customScopes, true) : defaultScopes).join(' '),
                 callback: function (tokenResponse) {
                     setAuthRes(tokenResponse);
+                    config.callbackFunction({ action: "save-token", content: tokenResponse.access_token, docs: [] });
                     createPicker(__assign(__assign({}, config), { token: tokenResponse.access_token }));
                 },
             });
