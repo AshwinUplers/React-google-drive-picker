@@ -68,6 +68,8 @@ function useDrivePicker() {
     var openPicker = function (config) {
         // global scope given conf
         setConfig(config);
+        console.log("Init Google Drive Picker");
+        console.log(config);
         // if we didnt get token generate token.
         if (!config.token) {
             var client = google.accounts.oauth2.initTokenClient({
