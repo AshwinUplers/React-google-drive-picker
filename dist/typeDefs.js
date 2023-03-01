@@ -6,5 +6,6 @@ exports.defaultConfiguration = {
     developerKey: '',
     viewId: 'DOCS',
     callbackFunction: function () { return null; },
+    onlyAccessToken: false
 };
 //# sourceMappingURL=typeDefs.js.map

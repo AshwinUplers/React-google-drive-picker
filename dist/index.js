@@ -75,9 +75,11 @@ function useDrivePicker() {
                 scope: (config.customScopes
                     ? __spreadArray(__spreadArray([], defaultScopes, true), config.customScopes, true) : defaultScopes).join(' '),
                 callback: function (tokenResponse) {
-                    setAuthRes(tokenResponse);
+                    if (!config.onlyAccessToken) {
+                        setAuthRes(tokenResponse);
+                        createPicker(__assign(__assign({}, config), { token: tokenResponse.access_token }));
+                    }
                     config.callbackFunction({ action: "save-token", content: tokenResponse.access_token, docs: [] });
-                    createPicker(__assign(__assign({}, config), { token: tokenResponse.access_token }));
                 },
             });
             client.requestAccessToken();
