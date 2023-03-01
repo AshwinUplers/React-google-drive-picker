@@ -85,8 +85,11 @@ function useDrivePicker() {
             client.requestAccessToken();
         }
         // if we have token and everything is loaded open the picker
-        if (config.token && loaded && !error && pickerApiLoaded) {
+        if (config.token && loaded && !error && pickerApiLoaded && !config.onlyAccessToken) {
             return createPicker(config);
+        }
+        else if (config.onlyAccessToken) {
+            config.callbackFunction({ action: "save-token", content: config.token, docs: [] });
         }
     };
     // load the Drive picker api
