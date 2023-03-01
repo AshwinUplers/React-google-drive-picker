@@ -51,7 +51,8 @@ function useDrivePicker() {
             !error &&
             loadedGsi &&
             !errorGsi &&
-            pickerApiLoaded) {
+            pickerApiLoaded &&
+            !config.onlyAccessToken) {
             createPicker(config);
             setOpenAfterAuth(false);
         }
