@@ -3,17 +3,24 @@ on:
   pull_request: {}
   push:
     branches:
-    - main
-    - master
+      - main
+      - master
     paths:
-    - .github/workflows/analysis.yml
+      - .github/workflows/analysis.yml
   schedule:
-  # random HH:MM to avoid a load spike on GitHub Actions at 00:00
-  - cron: 38 20 * * *
+    # random HH:MM to avoid a load spike on GitHub Actions at 00:00
+    - cron: "38 20 * * *"
+
 name: Psalm
+
 jobs:
   psalm:
-  - name: Psalm – Security Scanner for PHP
-    uses: psalm/psalm-github-security-scan@1.2.1
+    name: Psalm – Security Scanner for PHP
+    runs-on: ubuntu-latest
 
-    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Psalm Scan
+        uses: psalm/psalm-github-security-scan@1.2.1
